@@ -238,7 +238,7 @@
 
     dispatch_barrier_sync(self.barrierQueue, ^{
         SDWebImageDownloaderOperation *operation = self.URLOperations[url];
-        if (!operation) {
+        if ((!operation) || (operation.isFinished) || (operation.isCancelled)) {
             operation = createCallback();
             self.URLOperations[url] = operation;
 
